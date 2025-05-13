@@ -41,10 +41,9 @@
         </div>
         <div>
             <label for="whatsapp_number">WhatsApp Number</label>
-            <input type="text" name="whatsapp_number" value="{{ old('whatsapp_number') }}" placeholder="WhatsApp Number">
-            @error('whatsapp_number')
-                <span class="text-danger">{{ $message }}</span>
-            @enderror
+            <input type="text" name="whatsapp_number" value="{{ old('whatsapp_number') }}" id="whatsappInput">
+            <button type="button" onclick="validateWhatsApp()" id="validateWhatsappBtn">Validate WhatsApp</button>
+            <span class="error" id="whatsappErr"></span>
         </div>
 
         <div>
@@ -79,24 +78,40 @@
             @enderror
         </div>
 
-        <div>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-            @error('password')
-                <span class="text-danger">{{ $message }}</span>
-            @enderror
+     <!-- Password field -->
+<div class="password-container">
+    <div class="password-field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <div class="show-password">
+            <input type="checkbox" id="password_checkbox" onclick="togglePassword()"> Show Password
         </div>
+        @error('password')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+</div>
 
-        <div>
-            <label for="password_confirmation">Confirm Password</label>
-            <input type="password" id="password_confirmation" name="password_confirmation" required>
-        </div>
+<!-- Confirm Password field -->
+<div>
+    <label for="password_confirmation">Confirm Password</label>
+    <input type="password" id="password_confirmation" name="password_confirmation" required>
+    <div class="show-password">
+        <input type="checkbox" id="password_confirmation_checkbox" onclick="toggleConfirmPassword()"> Show Password
+    </div>
+</div>
 
-        <button type="submit" class="submit-button">
-            Submit
-          </button>
+        <div id="global-error" class="error" style="display: none; color: red;"></div>
+
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+</div>
 
     </form>
 
 </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/app.js') }}"></script>
 @endsection

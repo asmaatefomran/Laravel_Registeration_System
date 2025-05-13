@@ -16,7 +16,7 @@
     </main>
 
     @include('includes.footer')
-
-    <script src="{{ asset('js/scripts.js') }}"></script>
+    @stack('scripts')
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

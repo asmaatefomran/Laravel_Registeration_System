@@ -15,38 +15,92 @@ class UserInfoController extends Controller
 
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'fullname' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:user_infos',
-            'email' => 'required|email|unique:user_infos',
-            'phone' => 'required|string|max:15',
-            'whatsapp_number' => 'nullable|string|max:15',
-            'address' => 'required|string',
-            'password' => 'required|string|min:6|confirmed',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+{
+    $validated = $request->validate([
+        'fullname' => [
+            'required',
+            'regex:/^[a-zA-Z\s\.\'\-]+$/'
+        ],
+        'username' => [
+            'required',
+            'regex:/^\S+$/', // No spaces
+            'max:255',
+            'unique:user_infos'
+        ],
+        'email' => [
+            'required',
+            'email',
+            'unique:user_infos'
+        ],
+        'phone' => [
+            'required',
+            'regex:/^[0-9]{11}$/'
+        ],
+        'whatsapp_number' => [
+            'required',
+            'regex:/^[0-9]{11}$/'
+        ],
+        'address' => [
+            'required',
+            'string'
+        ],
+        'password' => [
+            'required',
+            'confirmed',
+            'regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/'
+        ],
+        'image' => [
+            'required',
+            'image',
+            'mimes:jpeg,png,jpg,gif',
+            'max:2048'
+        ],
+    ], [
+        'fullname.regex' => 'Full name may only contain letters, spaces, hyphens, apostrophes, and dots.',
+        'username.regex' => 'Username must not contain spaces.',
+        'phone.regex' => 'Phone number must be exactly 11 digits.',
+        'whatsapp_number.regex' => 'WhatsApp number must be exactly 11 digits.',
+        'password.regex' => 'Password must be at least 8 characters and contain at least one number, one uppercase, and one lowercase letter.',
+        'image.required' => 'Image is required.',
+        'image.image' => 'Only image files are allowed.',
+        'image.mimes' => 'Only JPG, JPEG, PNG, and GIF formats are allowed.',
+    ]);
 
-
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('uploads', 'public');
-        }
-
-        $user_info = new user_info();
-        $user_info->fullname = $validated['fullname'];
-        $user_info->username = $validated['username'];
-        $user_info->email = $validated['email'];
-        $user_info->phone = $validated['phone'];
-        $whatsapp_number = $validated['whatsapp_number'] ?? null;
-        $user_info->whatsapp_number = $whatsapp_number;
-        $user_info->address = $validated['address'];
-        // $user_info->password = bcrypt($validated['password']);
-        $user_info->password = Hash::make($validated['password']);
-        $user_info->image = $imagePath;
-        $user_info->save();
-
-
-        return redirect()->route('index')->with('success', 'Registration successful!');
+    $imagePath = null;
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('uploads', 'public');
     }
+
+    $user_info = new user_info();
+    $user_info->fullname = $validated['fullname'];
+    $user_info->username = $validated['username'];
+    $user_info->email = $validated['email'];
+    $user_info->phone = $validated['phone'];
+    $user_info->whatsapp_number = $validated['whatsapp_number'];
+    $user_info->address = $validated['address'];
+    $user_info->password = Hash::make($validated['password']);
+    $user_info->image = $imagePath;
+    $user_info->save();
+
+    return redirect()->route('index')->with('success', 'Registration successful!');    }
+
+    public function validateUsername(Request $request)
+{
+    $valid = !user_info::where('username', $request->username)->exists();
+    
+    return response()->json([
+        'valid' => $valid,
+        'message' => $valid ? 'Username available' : 'Username already taken'
+    ]);
+}
+
+public function validateEmail(Request $request)
+{
+    $valid = !user_info::where('email', $request->email)->exists();
+    
+    return response()->json([
+        'valid' => $valid,
+        'message' => $valid ? 'Email available' : 'Email already registered'
+    ]);
+}
 }
