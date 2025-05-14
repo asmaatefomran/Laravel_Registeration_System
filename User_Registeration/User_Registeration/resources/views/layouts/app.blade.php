@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
     @include('includes.header')
 
     <main>
         @yield('content')
     </main>
-
     @include('includes.footer')
-    @stack('scripts')
-    <script src="{{ asset('js/app.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/API_Ops.js') }}"></script>
 </body>
 </html>
