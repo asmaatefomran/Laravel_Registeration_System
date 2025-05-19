@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\user_info;
 use Illuminate\Support\Facades\Hash;
 
+use App\Mail\WelcomeEmail;
+use Illuminate\Support\Facades\Mail;
+
 class UserInfoController extends Controller
 {
     public function create()
@@ -81,6 +84,9 @@ class UserInfoController extends Controller
     $user_info->password = Hash::make($validated['password']);
     $user_info->image = $imagePath;
     $user_info->save();
+
+    Mail::to($user_info->email)->send(new WelcomeEmail($user_info->username));
+
 
     return redirect()->route('index')->with('success', 'Registration successful!');    }
 
