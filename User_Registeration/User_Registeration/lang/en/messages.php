@@ -12,6 +12,7 @@ return [
     'email' => 'E-mail',
     'phone' => 'Phone Number',
     'WhatsApp' => 'WhatsApp Number',
+    'validate_whatsapp' => 'Validate WhatsApp',
     'image' => 'Upload Image',
     'address' => 'Address',
     'password' => 'Password',
