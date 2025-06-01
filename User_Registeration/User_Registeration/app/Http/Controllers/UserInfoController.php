@@ -26,12 +26,12 @@ class UserInfoController extends Controller
                 'required',
                 'regex:/^\S+$/', // No spaces
                 'max:255',
-                'unique:user_infos,username' // specify column explicitly
+                'unique:user_infos,username' 
             ],
             'email' => [
                 'required',
                 'email',
-                'unique:user_infos,email' // specify column explicitly
+                'unique:user_infos,email' 
             ],
             'phone' => [
                 'required',
