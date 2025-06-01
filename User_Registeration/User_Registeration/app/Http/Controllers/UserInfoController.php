@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\user_info; // Follow PSR naming: UserInfo instead of user_info
+use App\Models\user_info; 
 use Illuminate\Support\Facades\Hash;
 use App\Mail\WelcomeEmail;
 use Illuminate\Support\Facades\Mail;
