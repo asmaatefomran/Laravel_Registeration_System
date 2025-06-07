@@ -16,7 +16,7 @@ class RegistrationTest extends TestCase
      */
     public function test_home_page_loads_successfully()
     {
-        $response = $this->get('/');
+        $response = $this->get('/en');
         $response->assertStatus(200);
     }
 
@@ -25,7 +25,7 @@ class RegistrationTest extends TestCase
      */
     public function test_registration_form_loads_correctly()
     {
-        $response = $this->get('/');
+        $response = $this->get('/en');
 
         $response->assertStatus(200);
         $response->assertSee('Register in the Form');
@@ -41,7 +41,7 @@ class RegistrationTest extends TestCase
     {
         Storage::fake('public');
 
-        $response = $this->post('/', [
+        $response = $this->post('/en', [
             'fullname' => 'John Doe',
             'username' => 'johndoe',
             'email' => 'john@example.com',
