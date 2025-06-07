@@ -28,4 +28,11 @@ return [
     'password.regex' => 'Password must contain at least one number, one uppercase, and one lowercase letter, and be at least 8 characters long.',
     'image.mimes' => 'Image must be a JPG, JPEG, PNG, or GIF.',
     'image.image' => 'Only image files are allowed.',
+    'password_lowercase' => 'At least one lowercase letter',
+    'password_uppercase' => 'At least one uppercase letter',
+    'password_number' => 'At least one number',
+    'password_length' => 'At least 8 characters',
+    'password_confirmation' => 'Password does not match',
+    'username.unique' => 'Username already exists',
+    'password_requirements_heading' => 'Password Requirements',
 ];
