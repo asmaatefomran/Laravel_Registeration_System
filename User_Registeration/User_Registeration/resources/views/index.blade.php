@@ -24,7 +24,7 @@
         @csrf
 
         <div>
-            <label for="fullname">{{ __('messages.name') }}</label>
+            <label for="fullname">{{ __('messages.fullname') }}</label>
             <input type="text" id="fullname" name="fullname" value="{{ old('fullname') }}" required>
             @error('fullname')
                 <span class="text-danger">{{ $message }}</span>
@@ -104,11 +104,11 @@
         </div>
 
         <div id="message">
-            <h3>{{ __('messages.password_requirements_heading') }}</h3>
-            <p id="letter" class="invalid">{{ __('messages.password_lowercase') }}</p>
-            <p id="capital" class="invalid">{{ __('messages.password_uppercase') }}</p>
-            <p id="number" class="invalid">{{ __('messages.password_number') }}</p>
-            <p id="length" class="invalid">{{ __('messages.password_length') ?? }}</p>
+            <h3>{{ __('messages.password_requirements_heading') ?? 'Password must contain the following:' }}</h3>
+            <p id="letter" class="invalid">{{ __('messages.password_lowercase') ?? 'A lowercase letter' }}</p>
+            <p id="capital" class="invalid">{{ __('messages.password_uppercase') ?? 'A capital (uppercase) letter' }}</p>
+            <p id="number" class="invalid">{{ __('messages.password_number') ?? 'A number' }}</p>
+            <p id="length" class="invalid">{{ __('messages.password_length') ?? 'Minimum 8 characters' }}</p>
         </div>
 
         <div id="global-error" class="error" style="display: none; color: red;"></div>
