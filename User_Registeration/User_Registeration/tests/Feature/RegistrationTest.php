@@ -29,7 +29,7 @@ class RegistrationTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Register in the Form');
-        $response->assertSee('fullname');
+        $response->assertSee('Full Name');
         $response->assertSee('Username');
         $response->assertSee('E-mail');
     }

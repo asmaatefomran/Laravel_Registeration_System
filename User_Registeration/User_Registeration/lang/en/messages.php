@@ -7,7 +7,7 @@ return [
     'register' => 'Register',
     'heading' => 'Register in the Form',
     'contact' => 'Contact Information',
-    'name' => 'Full Name',
+    'fullname' => 'Full Name',
     'username' => 'Username',
     'email' => 'E-mail',
     'phone' => 'Phone Number',

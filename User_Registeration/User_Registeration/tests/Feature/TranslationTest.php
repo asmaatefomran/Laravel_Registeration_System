@@ -22,7 +22,7 @@ class TranslationTest extends TestCase
         $this->assertEquals('Register', __('messages.register'));
         
         // Test form field translations
-        $this->assertEquals('Full Name', __('messages.name'));
+        $this->assertEquals('Full Name', __('messages.fullname'));
         $this->assertEquals('Username', __('messages.username'));
         $this->assertEquals('E-mail', __('messages.email'));
         $this->assertEquals('Phone Number', __('messages.phone'));
