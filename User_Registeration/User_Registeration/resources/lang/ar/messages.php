@@ -35,4 +35,5 @@ return [
     'password_confirmation' => 'يجب أن تتطابق كلمة المرور وتأكيد كلمة المرور.',
     'username.unique' => 'اسم المستخدم موجود بالفعل',
     'password_requirements_heading' => 'متطلبات كلمة المرور',
+    'all_fields_required' => 'ملاحظة : يجب إملاء كل البيانات المطلوبة.',
 ];

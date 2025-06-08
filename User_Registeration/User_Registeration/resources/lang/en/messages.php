@@ -35,4 +35,5 @@ return [
     'password_confirmation' => 'Password does not match',
     'username.unique' => 'Username already exists',
     'password_requirements_heading' => 'Password Requirements',
+    'all_fields_required' => 'Note: All fields are required.',
 ];

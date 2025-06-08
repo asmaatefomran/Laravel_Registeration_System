@@ -10,7 +10,7 @@
     <div class="successMessage">{{ __('messages.success') }}</div>
     @endif
 
-    @if ($errors->any())
+    <!-- @if ($errors->any())
         <div style="color: red;">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -18,7 +18,11 @@
                 @endforeach
             </ul>
         </div>
-    @endif
+    @endif -->
+    
+    <p style="color: #d9534f; font-weight: bold; margin-bottom: 15px;">
+    {{ __('messages.all_fields_required') ?? 'Note: All fields are required.' }}
+</p>
 
     <form action="{{ route('index.store') }}" method="POST" enctype="multipart/form-data" onsubmit="return submitForm(event)">
         @csrf
@@ -27,7 +31,7 @@
             <label for="fullname">{{ __('messages.fullname') }}</label>
             <input type="text" id="fullname" name="fullname" value="{{ old('fullname') }}" required>
             @error('fullname')
-                <span class="text-danger">{{ $message }}</span>
+                <div class="error-message">{{ $message }}</div>
             @enderror
         </div>
 
@@ -36,7 +40,7 @@
             <input type="text" id="username" name="username" value="{{ old('username') }}" required>
             <span id="usernameValidation"></span>
             @error('username')
-                <span class="text-danger">{{ $message }}</span>
+                <div class="error-message">{{ $message }}</div>
             @enderror
         </div>
 
@@ -52,7 +56,7 @@
             <input type="email" id="email" name="email" value="{{ old('email') }}" required>
             <span id="emailValidation"></span>
             @error('email')
-                <span class="text-danger">{{ $message }}</span>
+                <div class="error-message">{{ $message }}</div>
             @enderror
         </div>
 
@@ -60,7 +64,7 @@
             <label for="phone">{{ __('messages.phone') }}</label>
             <input type="text" id="phone" name="phone" value="{{ old('phone') }}" required>
             @error('phone')
-                <span class="text-danger">{{ $message }}</span>
+                <div class="error-message">{{ $message }}</div>
             @enderror
         </div>
 
@@ -68,7 +72,7 @@
             <label for="address">{{ __('messages.address') }}</label>
             <input type="text" id="address" name="address" value="{{ old('address') }}" required>
             @error('address')
-                <span class="text-danger">{{ $message }}</span>
+                <div class="error-message">{{ $message }}</div>
             @enderror
         </div>
 
@@ -76,7 +80,7 @@
             <label for="image">{{ __('messages.image') }}</label>
             <input type="file" id="image" name="image">
             @error('image')
-                <span class="text-danger">{{ $message }}</span>
+                <div class="error-message">{{ $message }}</div>
             @enderror
         </div>
 
@@ -88,7 +92,7 @@
                     <input type="checkbox" id="password_checkbox" onclick="togglePassword()"> {{ __('messages.show_password') }}
                 </div>
                 @error('password')
-                    <span class="text-danger">{{ $message }}</span>
+                    <div class="error-message">{{ $message }}</div>
                 @enderror
             </div>
         </div>

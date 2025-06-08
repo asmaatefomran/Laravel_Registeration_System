@@ -59,12 +59,13 @@ class UserInfoController extends Controller
         ], [
             'fullname.regex' => 'Full name may only contain letters, spaces, hyphens, apostrophes, and dots.',
             'username.regex' => 'Username must not contain spaces.',
-            'phone.regex' => 'Phone number must be exactly 11 digits.',
+            'phone.regex' => 'Invalid Phone number. Note : Phone number must Only be exactly 11 digits.',
             'whatsapp_number.regex' => 'WhatsApp number must be exactly 11 digits.',
             'password.regex' => 'Password must be at least 8 characters and contain at least one number, one uppercase, and one lowercase letter.',
             'image.required' => 'Image is required.',
             'image.image' => 'Only image files are allowed.',
             'image.mimes' => 'Only JPG, JPEG, PNG, and GIF formats are allowed.',
+            'required' => 'User must fill all fields.',
         ]);
 
         // Handle image upload securely

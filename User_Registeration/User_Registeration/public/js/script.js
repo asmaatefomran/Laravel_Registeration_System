@@ -94,13 +94,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (whatsappInput.value.trim() === "") {
             whatsappInput.classList.add("error-field");
             isValid = false;
-        } //else if (isValid) {
-           // const isWhatsAppValid = await validateWhatsApp();
-            //if (!isWhatsAppValid) {
-                //whatsappInput.classList.add("error-field");
-               // isValid = false;
-           // }
-        //}
+        } else if (isValid) {
+            const isWhatsAppValid = await validateWhatsApp();
+            if (!isWhatsAppValid) {
+                whatsappInput.classList.add("error-field");
+                isValid = false;
+            }
+        }
 
         const errorElement = document.getElementById("global-error");
         errorElement.style.display = isValid ? "none" : "block";
